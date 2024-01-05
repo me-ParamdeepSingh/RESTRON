@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+{%load static%}
+
+
+
+
+<!-- Navbar & Hero End -->
+
+
+<!-- Menu Start -->
+
+<!-- cart heading -->
+<div class="container">
+    <a href="/menu/" class="btn btn-light text-danger border-danger mb-2 row">← Continue ordering</a>
+    <div class="row">
+        <div class="col-5 bg-danger h5 text-start text-white p-2">Product</div>
+        <div class="col-2 bg-danger h5 text-start text-white p-2">Price</div>
+        <div class="col-2 bg-danger h5 text-start text-white p-2 text-center">Quantity</div>
+        <div class="col-3 bg-danger h5 text-end p-2 text-white">Subtotal</div>
+
+    </div>
+    <!-- foor loop -->
+
+
+    <!-- product list -->
+
+
+
+    <div class="row">
+
+        {% for item in items %}
+        <div class="col-5 mb-2">
+            <div class="d-flex">
+                <img class="flex-shrink-0 img-fluid rounded" src=" /static/{{item.item.item_image}}"
+                    alt="menu_item_image" style="width: 80px; max-height: 50px;">
+                <div class="mx-2">
+                    <span class="h5">{{item.item.item_name}}</span><br>
+                    <span data-item="{{item.item_id}}" data-action="remove"
+                        class="text-danger fs-6 update-cart hand-cursor">Remove</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 text-start">₹ {{item.item.item_price}}</div>
+        <div class="col-2 d-flex justify-content-center">
+            <div class="p-1">{{item.quantity}}</div>
+            <div class="d-flex flex-column p-1">
+                <img data-item="{{item.item_id}}" data-action="add" class="mb-1 hand-cursor update-cart" src="{% static 'img/up.png' %}" alt="" width="10">
+                <img data-item="{{item.item_id}}" data-action="subtract" class="hand-cursor update-cart" src="{% static 'img/down.png' %}" alt="" width="10">
+            </div>
+        </div>
+        <div class="col-3 text-end subT" id="subT">₹ {{item.get_total}} </div>
+        {% endfor %}
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-7"></div>
+        <hr class="col-5 border border-danger border-2  opacity-100">
+    </div>
+
+    <div class="row">
+        <div class="col-7">Total items {{order.get_cart_items}}</div>
+        <div class="col 2 text-start h4">Total</div>
+        <div class="col 2 text-end h5">₹ {{order.get_cart_total}}</div>
+    </div>
+
+    <div class="row bg-danger p-2 py-4 ">
+        <div class="col text-light">
+            <span onclick="checkout_option('dinning')">
+                <input type="radio" name="checkout" id="dinning">
+                <label for="dinning" class="mx-2">Dinning</label>
+            </span>
+            <span onclick="checkout_option('take-away')">
+                <input type="radio" name="checkout" id="take-away" onclick="checkout_option('take-away')">
+                <label for="take-away" class="mx-2">Take Away</label>
+            </span>
+            <span onclick="checkout_option('delivery')">
+                <input type="radio" name="checkout" id="delivery" onclick="checkout_option('delivery')">
+                <label for="delivery" class="mx-2">Delivery</label>
+            </span>
+        </div>
+        <div class="col text-end">
+            <!-- <a href="/checkout/" class="btn btn-light text-danger">Dinning</a>
+            <a href="/checkout/" class="btn btn-light text-danger">Take Away</a> -->
+            <a href="/checkout?option=delivery" class="btn btn-light text-danger checkout-btn">Checkout</a>
+        </div>
+    </div>
+    <!-- end loop -->
+
+
+
+
+
+
+</div>
+<!-- Menu End -->
+
+<script>
+    function checkout_option(option){
+        $('.checkout-btn').attr('href', '/checkout?option='+ option);
+    }
+
+    
+</script>
+
+
+
+{% endblock %}
