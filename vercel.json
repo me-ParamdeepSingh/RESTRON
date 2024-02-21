@@ -1,7 +1,7 @@
 {
     "builds": [
         {
-            "src": "RESTRON/wsgi.py",
+            "src": "restoran/wsgi.py",
             "use": "@vercel/python",
             "config": { "maxlambdaSize": "15mb", "runtime": "python3.12.0" }
         }
@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "RESTRON/wsgi.py"
+            "dest": "restron/wsgi.py"
         }
     ]
 }
