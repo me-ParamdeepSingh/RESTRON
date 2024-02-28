@@ -141,11 +141,29 @@
                     <div class="col-3 text-end">₹ {{item.get_total}} </div>
                 </div>
                 {% endfor %}
+                <div class="row">
+                    <div class="col-6">Delivery charges</div>
+                    <div class="col-6 text-end h">₹ {{charges}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-7">GST:</div>
+                    <!-- <div class="col 2 text-end h">₹ {{GST}}</div> -->
+                </div>
+                <div class="row">
+                    <div class="col-7">&nbsp;CGST</div>
+                    <div class="col 6 text-start">₹{{CGST}}</div>
+                    <!-- <div class="col 2 text-end h">₹ {{GST}}</div> -->
+                </div>
+                <div class="row">
+                    <div class="col-7">&nbsp;SGST</div>
+                    <div class="col 6 text-start">₹{{SGST}}</div>
+                    <div class="col 2 text-end h">₹ {{GST}}</div>
+                </div>
                 <hr>
                 <div class="row">
-                    <div class="col-7">Total items {{order.get_cart_items}}</div>
-                    <div class="col 2 text-start h4">Total</div>
-                    <div class="col 2 text-end h5">₹ {{order.get_cart_total}}</div>
+                    <!-- <div class="col-7">Total items {{order.get_cart_items}}</div> -->
+                    <div class="col 6 text-start h4">Total</div>
+                    <div class="col 6 text-end h5">₹ {{total}}</div>
                 </div>
             </div>
 

@@ -44,6 +44,8 @@ def cookieCart(request):
             cart_order['get_cart_total'] += total
             cart_order['get_cart_items'] += i['quantity']
 
+            print(cart_order)
+
             item = { 
                 'item':{
                     'id': item.id,
