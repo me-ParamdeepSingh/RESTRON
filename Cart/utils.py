@@ -77,9 +77,10 @@ def cartData(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         cart_order, created = Order.objects.get_or_create(customer=customer, complete= False)
+        print("cart data -",cart_order)
         client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
-        payment = client.order.create({'amount': cart_order.get_cart_total * 100, 'currency': 'INR', 'payment_capture': 1})
-        cart_order.razorpay_order_id = payment['id']
+        # payment = client.order.create({'amount': cart_order.get_cart_total * 100, 'currency': 'INR', 'payment_capture': 1})
+        # cart_order.razorpay_order_id = payment['id']
         cart_order.order_option = option
         cart_order.save()
         items = cart_order.cart_items_set.all()
@@ -90,7 +91,7 @@ def cartData(request):
         payment = cookieData['payment']
    
 
-    return {'items': items, 'order': cart_order, 'option': option, 'payment': payment}
+    return {'items': items, 'order': cart_order, 'option': option,}
 
 
 def guestOrder(request, data):
