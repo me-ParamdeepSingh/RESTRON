@@ -158,14 +158,15 @@ def checkout(request):
     option = data['option']
     payment = data['payment']
     charges = 0
-    CGST = round(6/100 * order.get_cart_total,2)
-    SGST = round(6/100 * order.get_cart_total,2)
+    CGST = round(6/100 * order["get_cart_total"],2)
+    SGST = round(6/100 * order["get_cart_total"],2)
     GST = CGST + SGST
 
     if option == 'delivery':
         charges = 50
 
-    total = order.get_cart_total + charges + GST
+
+    total = order["get_cart_total"] + charges + GST
     
     client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
     payment = client.order.create({'amount': total * 100, 'currency': 'INR', 'payment_capture': 1})
@@ -180,7 +181,7 @@ def checkout(request):
         'CGST': CGST,
         'SGST': SGST,
         'GST': GST,
-        'total': order.get_cart_total + charges + GST 
+        'total': order["get_cart_total"] + charges + GST 
     }
     return render(request, 'checkout.html', context)
 
@@ -199,6 +200,7 @@ def payment_success(request):
         order.razorpay_payment_id = payment_id
         order.razorpay_payment_signature = signature
         order.complete = True
+        
         order.save()
 
     else:
