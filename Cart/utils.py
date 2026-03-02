@@ -135,7 +135,7 @@ def send_success_mail(customer,order):
 
     email = customer.email
     name = customer.name
-    subject = "Order from Restron"
+    subject = "Order from Restoran"
     
     message = "Dear " + name + ", your order is placed."
     from_email = settings.EMAIL_HOST_USER
