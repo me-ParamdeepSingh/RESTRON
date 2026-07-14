@@ -21,6 +21,7 @@ def cart_check(request):
                 total += i['quantity']
 
             request.session['cart'] = total
+        
     
 def cookieCart(request):
 

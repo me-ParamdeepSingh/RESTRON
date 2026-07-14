@@ -2,11 +2,17 @@ from django.db import models
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
 
 class Menu(models.Model):
     item_name = models.CharField(max_length=100)
+    item_category = models.ManyToManyField(Category)
     item_description = models.TextField()
-    item_price = models.IntegerField()
+    item_price = models.IntegerField() 
     item_image = models.ImageField(upload_to="menu_items")
 
     def __str__(self) -> str:

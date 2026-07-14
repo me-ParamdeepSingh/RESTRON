@@ -7,7 +7,7 @@ for(var i = 0; i < updateBtns.length; i++) {
      var action = this.dataset.action;
      console.log('product id: ', item_id, 'action: ', action)
 
-     console.log('User :', user)
+     console.log('User :', user) 
      if(user == 'AnonymousUser'){
         AnonymousUserCart(item_id, action)
      }else{
@@ -40,7 +40,6 @@ function updateUserCart(item_id, action){
      }
 
  })
- 
 }
 function AnonymousUserCart(item_id, action){
  console.log('AnonymousUser cart update, sending data...')

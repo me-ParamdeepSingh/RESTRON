@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import *
+from Menu.models import *
 from django.db.models import Q
 from Cart.utils import cart_check
 
@@ -12,7 +12,9 @@ from Cart.utils import cart_check
 
 def home(request):
     cart_check(request)
-    return render(request,'index.html', {'title': 'Home'})
+    items = Menu.objects.all()
+    context = {'title': 'Home', 'menu_items': items}
+    return render(request,'index.html', context)
 
 def about(request):
     cart_check(request)
