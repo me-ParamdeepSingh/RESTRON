@@ -62,8 +62,8 @@ def cookieCart(request):
         except:
             pass
     
-    client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
-    payment = client.order.create({'amount': cart_order['get_cart_total'] * 100, 'currency': 'INR', 'payment_capture': 1})
+    # client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+    # payment = client.order.create({'amount': cart_order['get_cart_total'] * 100, 'currency': 'INR', 'payment_capture': 1})
 
 
     return{'items': items, 'order': cart_order, 'payment': payment}

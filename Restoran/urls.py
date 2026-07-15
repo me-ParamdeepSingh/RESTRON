@@ -20,6 +20,7 @@ from home.views import *
 from Menu.views import *
 from Cart.views import *
 from Accounts.views import *
+from django.conf import settings
 
 urlpatterns = [
 
